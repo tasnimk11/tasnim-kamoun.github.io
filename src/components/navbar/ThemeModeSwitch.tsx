@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { useThemeMode } from "../contexts/ThemeModeContext";
+import { useThemeMode } from "../../contexts/ThemeModeContext";
 import { SyntheticEvent } from "react";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({

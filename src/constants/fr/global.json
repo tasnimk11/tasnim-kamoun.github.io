@@ -2,5 +2,6 @@
   "home_page": {
     "work_title": "Ingénieur Logiciel et Business Developer",
     "welcome_message": "Bienvenue dans mon coin personnel sur le web ! N'hésitez pas à l'explorer et à en découvrir plus sur moi, mon parcours et les projets qui me passionnent.."
-  }
+  },
+  "page_not_found": "404 - Page introuvable"
 }
