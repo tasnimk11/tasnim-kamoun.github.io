@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import ThemeModeSwitch from "./ThemeModeSwitch";
+import { useThemeMode } from "../contexts/ThemeModeContext";
 
 const NavBar = () => {
   const [language, setLanguage] = React.useState("en");
@@ -44,19 +46,25 @@ const NavBar = () => {
     <AppBar
       position="fixed"
       elevation={0}
-      sx={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+      sx={{
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark"
+            ? `rgba(${theme.palette.primary.main.slice(
+                1,
+                3
+              )}, ${theme.palette.primary.main.slice(
+                3,
+                5
+              )}, ${theme.palette.primary.main.slice(5, 7)}, 0.6)` // Dark mode background
+            : `rgba(255, 255, 255, 0.6)`,
+      }}
     >
       <Toolbar>
         <Stack direction={"row"} spacing={4}>
-          <Typography variant="subtitle2" color="black">
-            Logo
-          </Typography>
-          <Typography variant="subtitle2" color="black">
-            FR/EN
-          </Typography>
-          <Typography variant="subtitle2" color="black">
-            Theme Mode Switch
-          </Typography>
+          {/* THEME MODE SWITCHER */}
+          <ThemeModeSwitch />
+
+          {/* LANGUAGE SWITCHER */}
           <StyledToggleButtonGroup
             value={language}
             exclusive

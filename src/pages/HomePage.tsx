@@ -24,11 +24,24 @@ const HomePage = () => {
         }}
       >
         <Stack textAlign={{ xs: "center", md: "right" }}>
-          <Typography variant="h3" fontWeight={900}>
+          <Typography
+            variant="h3"
+            fontWeight={900}
+            sx={{ color: (theme) => theme.palette.text.primary }}
+          >
             TASNIM KAMOUN
           </Typography>
-          <Typography variant="h6">{work_title}</Typography>
-          <Typography mt={{ xs: 1, md: 3 }} variant="subtitle1">
+          <Typography
+            variant="h6"
+            sx={{ color: (theme) => theme.palette.text.primary }}
+          >
+            {work_title}
+          </Typography>
+          <Typography
+            mt={{ xs: 1, md: 3 }}
+            variant="subtitle1"
+            sx={{ color: (theme) => theme.palette.text.primary }}
+          >
             {welcome_message}
           </Typography>
         </Stack>
