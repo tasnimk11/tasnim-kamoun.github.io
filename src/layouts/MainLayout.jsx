@@ -4,6 +4,7 @@ import {
   CssBaseline,
   Stack,
   ThemeProvider,
+  Toolbar,
 } from "@mui/material";
 import NavBar from "../components/NavBar";
 import { useThemeMode } from "../contexts/ThemeModeContext";
@@ -33,7 +34,7 @@ const MainLayouts = ({ children }) => {
         <NavBar />
         <Stack
           spacing={4}
-          paddingTop={{ xs: 10, md: 20 }}
+          paddingTop={{ md: 10 }}
           sx={{
             justifyContent: "center",
             alignItems: "center",
@@ -41,6 +42,7 @@ const MainLayouts = ({ children }) => {
           }}
           paddingX={{ xs: 3, md: 0 }}
         >
+          <Toolbar />
           {children}
         </Stack>
       </Container>
