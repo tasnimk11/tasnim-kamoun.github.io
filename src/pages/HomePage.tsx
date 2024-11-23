@@ -1,37 +1,52 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
-  return (
+  const { t } = useTranslation("global") as any;
 
-    <Stack direction={"row"} sx={{ justifyContent: "center", alignItems: "center", width: "100%",}} spacing={10}>
+  const welcome_message = t("home_page.welcome_message");
+  const work_title = t("home_page.work_title");
+
+  return (
+    <Stack
+      direction={{ xs: "column-reverse", md: "row" }}
+      sx={{ justifyContent: "center", alignItems: "center", width: "100%" }}
+      spacing={{ xs: 5, md: 10 }}
+    >
       <Box
-        component="text"
+        component="div"
         sx={{
-          height : 300, 
+          height: { xs: 200, md: 300 },
+          maxWidth: 500,
+          display: "flex", // Enables flexbox
+          flexDirection: "column", // Aligns text vertically
+          justifyContent: "center", // Centers content vertically
         }}
       >
-        <Typography textAlign={"right"} variant='h3' fontWeight={900} >TASNIM KAMOUN</Typography>
-        <Typography textAlign={"right"} variant='h6'>Software Engineer and Business Developer</Typography>
-        <Typography textAlign={"right"} variant='subtitle1'>  </Typography>
-        <Typography textAlign={"right"} variant='subtitle1'>... description</Typography>
+        <Stack textAlign={{ xs: "center", md: "right" }}>
+          <Typography variant="h3" fontWeight={900}>
+            TASNIM KAMOUN
+          </Typography>
+          <Typography variant="h6">{work_title}</Typography>
+          <Typography mt={{ xs: 1, md: 3 }} variant="subtitle1">
+            {welcome_message}
+          </Typography>
+        </Stack>
       </Box>
-      
-      
 
       <Box
         component="img"
         src="./homepage-id-pic.jpg"
         alt="Tasnim's Photo"
         sx={{
-          width: 300, 
-          height: 300, 
+          width: 300,
+          height: 300,
           borderRadius: "50%", // Example for a circular image
           objectFit: "cover", // Ensures the image fits nicely
         }}
-      />      
-      
+      />
     </Stack>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

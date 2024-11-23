@@ -22,8 +22,9 @@ const MainLayouts = ({ children }) => {
         <NavBar />
         <Stack
           spacing={4}
-          marginTop={20}
+          marginTop={{ xs: 10, md: 20 }}
           sx={{ justifyContent: "center", alignItems: "center" }}
+          paddingX={{ xs: 3, md: 0 }}
         >
           {children}
         </Stack>
