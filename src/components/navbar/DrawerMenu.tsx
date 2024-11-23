@@ -9,9 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 interface Props {
-  menu: string[];
+  menu: {
+    label: string;
+    path: string;
+    enabled: boolean;
+  }[];
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleDrawerToggle: () => void;
@@ -31,9 +36,20 @@ const DrawerMenu = ({
       <Divider />
       <List>
         {menu.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton
+              sx={{
+                textAlign: "center",
+                textDecoration: "none",
+                "&.active": {
+                  textDecoration: "underline", // Style for active route
+                },
+              }}
+              disabled={!item.enabled}
+              component={NavLink}
+              to={item.path}
+            >
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}

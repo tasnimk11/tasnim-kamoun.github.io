@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MainLayouts from "./layouts/MainLayout";
 import { ThemeModeProvider } from "./contexts/ThemeModeContext";
+import { ContactPage } from "@mui/icons-material";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <MainLayouts>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </MainLayouts>
