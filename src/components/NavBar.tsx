@@ -64,10 +64,10 @@ const NavBar = () => {
                   key={item.label}
                   sx={{
                     color: (theme) => theme.palette.text.primary,
-                    fontWeight: selectedPage === item.path ? 700 : 400,
+                    fontWeight: selectedPage === item.path ? 600 : 400,
                     ".MuiSvgIcon-root": {
                       stroke: (theme) => theme.palette.text.primary,
-                      strokeWidth: selectedPage === item.path ? "0.5px" : "0px",
+                      strokeWidth: selectedPage === item.path ? "0.3px" : "0px",
                     },
                   }}
                   disabled={!item.enabled}
