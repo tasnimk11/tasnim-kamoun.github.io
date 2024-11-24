@@ -3,5 +3,12 @@
     "work_title": "Software Engineer and Business Developer",
     "welcome_message": "Welcome to my personal corner on the web! Feel free to explore and discover more about me, my journey, and the projects I’m passionate about."
   },
-  "page_not_found": "404 - Page not found"
+  "page_not_found": "404 - Page not found",
+  "navbar_menu": {
+    "home": "Home",
+    "career": "Career",
+    "portfolio": "Portfolio",
+    "interests": "Interests",
+    "contact": "Contact"
+  }
 }

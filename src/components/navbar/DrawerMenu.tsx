@@ -43,8 +43,10 @@ const DrawerMenu = ({
               sx={{
                 textAlign: "center",
                 textDecoration: "none",
-                "&.active": {
-                  textDecoration: "underline", // Style for active route
+
+                "&.active .MuiSvgIcon-root": {
+                  stroke: (theme) => theme.palette.text.primary,
+                  strokeWidth: "0.2px",
                 },
               }}
               disabled={!item.enabled}
@@ -52,7 +54,12 @@ const DrawerMenu = ({
               to={item.path}
             >
               <ListItemIcon sx={{ minWidth: "0" }}>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
+              <ListItemText
+                sx={{
+                  fontWeight: (isActive) => (isActive ? 700 : 400),
+                }}
+                primary={item.label}
+              />
             </ListItemButton>
           </ListItem>
         ))}

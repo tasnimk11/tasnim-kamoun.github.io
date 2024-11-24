@@ -1,12 +1,4 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Button, IconButton, Stack, Toolbar } from "@mui/material";
 import ThemeModeSwitch from "./navbar/ThemeModeSwitch";
 import { LanguageSwitch } from "./navbar/LanguageSwitch";
 import React from "react";
@@ -14,40 +6,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DrawerMenu from "./navbar/DrawerMenu";
 import LogoIcon from "./navbar/LogoIcon";
 import { NavLink } from "react-router-dom";
-import RoofingOutlinedIcon from "@mui/icons-material/RoofingOutlined";
-import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
-import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
-import MarkEmailUnreadOutlinedIcon from "@mui/icons-material/MarkEmailUnreadOutlined";
+import { useMenu } from "../contexts/MenuContext";
 
 const NavBar = () => {
-  const menu = [
-    { label: "Home", path: "/", enabled: true, icon: <RoofingOutlinedIcon /> },
-    {
-      label: "Career",
-      path: "/career",
-      enabled: false,
-      icon: <BusinessCenterOutlinedIcon />,
-    },
-    {
-      label: "Portfolio",
-      path: "/portfolio",
-      enabled: false,
-      icon: <BookOutlinedIcon />,
-    },
-    {
-      label: "Interests",
-      path: "/intersts",
-      enabled: false,
-      icon: <StarBorderOutlinedIcon />,
-    },
-    {
-      label: "Contact",
-      path: "/contact",
-      enabled: true,
-      icon: <MarkEmailUnreadOutlinedIcon />,
-    },
-  ];
+  const { menu, selectedPage, setSelectedPage } = useMenu();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -55,6 +17,7 @@ const NavBar = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  console.log("selected page : ", selectedPage);
   return (
     <>
       <AppBar
@@ -101,12 +64,10 @@ const NavBar = () => {
                   key={item.label}
                   sx={{
                     color: (theme) => theme.palette.text.primary,
-                    "&.active": {
-                      fontWeight: "700", // Style for active route
-                    },
-                    "&.active .MuiSvgIcon-root": {
-                      stroke: (theme) => theme.palette.text.primary, // match this to the color of your background
-                      strokeWidth: "0.5px", // the higher the value, the thinner the SVG                    },
+                    fontWeight: selectedPage === item.path ? 700 : 400,
+                    ".MuiSvgIcon-root": {
+                      stroke: (theme) => theme.palette.text.primary,
+                      strokeWidth: selectedPage === item.path ? "0.5px" : "0px",
                     },
                   }}
                   disabled={!item.enabled}
@@ -114,6 +75,7 @@ const NavBar = () => {
                   to={item.path}
                   size="small"
                   startIcon={item.icon}
+                  onClick={() => setSelectedPage(item.path)}
                 >
                   {item.label}
                 </Button>

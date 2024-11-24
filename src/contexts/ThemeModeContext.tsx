@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
+type ThemeModesType = "light" | "dark";
 interface ThemeModeContextType {
-  themeMode: "light" | "dark";
-  setThemeMode: (theme: "light" | "dark") => void;
+  themeMode: ThemeModesType;
+  setThemeMode: (theme: ThemeModesType) => void;
 }
 
 const ThemeModeContext = createContext<ThemeModeContextType | undefined>(
@@ -18,9 +19,9 @@ interface ThemeModeProviderProps {
 export const ThemeModeProvider: React.FC<ThemeModeProviderProps> = ({
   children,
 }) => {
-  const [themeMode, setThemeMode] = useState<"light" | "dark">("light");
+  const [themeMode, setThemeMode] = useState<ThemeModesType>("light");
 
-  const switchTheme = (mode: "light" | "dark") => {
+  const switchTheme = (mode: ThemeModesType) => {
     setThemeMode(mode);
   };
 
