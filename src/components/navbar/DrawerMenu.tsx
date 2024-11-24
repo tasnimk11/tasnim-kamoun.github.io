@@ -11,7 +11,12 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }: Props) => {
   const { menu, selectedPage, setSelectedPage } = useMenu();
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{
+        textAlign: "center",
+      }}
+    >
       <Typography variant="h6" sx={{ my: 2 }}>
         TK
       </Typography>
@@ -63,7 +68,12 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }: Props) => {
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: 200,
+            width: "30%",
+            backgroundColor: (theme) =>
+              theme.palette.mode === "dark"
+                ? `rgba(18, 18, 18, 0.8)`
+                : `rgba(255, 255, 255)`,
+            backdropFilter: "blur(10px)", // Blurry effect
           },
         }}
       >
