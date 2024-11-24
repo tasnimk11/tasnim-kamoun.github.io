@@ -99,9 +99,7 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <DrawerMenu
-        menu={menu}
         mobileOpen={mobileOpen}
-        setMobileOpen={setMobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
     </>

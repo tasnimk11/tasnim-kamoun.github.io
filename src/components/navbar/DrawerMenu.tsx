@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   Drawer,
   List,
@@ -7,63 +8,59 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useMenu } from "../../contexts/MenuContext";
 
 interface Props {
-  menu: {
-    label: string;
-    path: string;
-    enabled: boolean;
-    icon: JSX.Element;
-  }[];
   mobileOpen: boolean;
-  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleDrawerToggle: () => void;
 }
 
-const DrawerMenu = ({
-  menu,
-  mobileOpen,
-  setMobileOpen,
-  handleDrawerToggle,
-}: Props) => {
+const DrawerMenu = ({ mobileOpen, handleDrawerToggle }: Props) => {
+  const { menu, selectedPage, setSelectedPage } = useMenu();
+
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         TK
       </Typography>
       <Divider />
-      <List>
+      <Stack
+        direction={"column"}
+        paddingTop={1}
+        alignItems={"center"}
+        justifyContent={"space-around"}
+        spacing={2}
+      >
         {menu.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton
-              sx={{
-                textAlign: "center",
-                textDecoration: "none",
-
-                "&.active .MuiSvgIcon-root": {
-                  stroke: (theme) => theme.palette.text.primary,
-                  strokeWidth: "0.2px",
-                },
-              }}
-              disabled={!item.enabled}
-              component={NavLink}
-              to={item.path}
-            >
-              <ListItemIcon sx={{ minWidth: "0" }}>{item.icon}</ListItemIcon>
-              <ListItemText
-                sx={{
-                  fontWeight: (isActive) => (isActive ? 700 : 400),
-                }}
-                primary={item.label}
-              />
-            </ListItemButton>
-          </ListItem>
+          <Button
+            key={item.label}
+            sx={{
+              minWidth: "80%",
+              justifyContent: "flex-start", // Aligns the icon and label to the left
+              textAlign: "left", // Ensures text aligns left
+              color: (theme) => theme.palette.text.primary,
+              fontWeight: selectedPage === item.path ? 700 : 400,
+              ".MuiSvgIcon-root": {
+                stroke: (theme) => theme.palette.text.primary,
+                strokeWidth: selectedPage === item.path ? "0.5px" : "0px",
+              },
+            }}
+            disabled={!item.enabled}
+            component={NavLink}
+            to={item.path}
+            size="small"
+            startIcon={item.icon}
+            onClick={() => setSelectedPage(item.path)}
+          >
+            {item.label}
+          </Button>
         ))}
-      </List>
+      </Stack>
     </Box>
   );
   return (
