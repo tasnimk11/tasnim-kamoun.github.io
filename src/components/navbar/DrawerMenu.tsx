@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
   Typography,
 } from "@mui/material";
@@ -16,6 +17,7 @@ interface Props {
     label: string;
     path: string;
     enabled: boolean;
+    icon: JSX.Element;
   }[];
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,7 +33,7 @@ const DrawerMenu = ({
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        TK
       </Typography>
       <Divider />
       <List>
@@ -49,6 +51,7 @@ const DrawerMenu = ({
               component={NavLink}
               to={item.path}
             >
+              <ListItemIcon sx={{ minWidth: "0" }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
@@ -69,7 +72,7 @@ const DrawerMenu = ({
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            width: 240,
+            width: 200,
           },
         }}
       >

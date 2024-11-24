@@ -14,14 +14,39 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DrawerMenu from "./navbar/DrawerMenu";
 import LogoIcon from "./navbar/LogoIcon";
 import { NavLink } from "react-router-dom";
+import RoofingOutlinedIcon from "@mui/icons-material/RoofingOutlined";
+import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
+import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
+import BookOutlinedIcon from "@mui/icons-material/BookOutlined";
+import MarkEmailUnreadOutlinedIcon from "@mui/icons-material/MarkEmailUnreadOutlined";
 
 const NavBar = () => {
   const menu = [
-    { label: "Home", path: "/", enabled: true },
-    { label: "Career", path: "/career", enabled: false },
-    { label: "Portfolio", path: "/portfolio", enabled: false },
-    { label: "Interests", path: "/intersts", enabled: false },
-    { label: "Contact", path: "/contact", enabled: true },
+    { label: "Home", path: "/", enabled: true, icon: <RoofingOutlinedIcon /> },
+    {
+      label: "Career",
+      path: "/career",
+      enabled: false,
+      icon: <BusinessCenterOutlinedIcon />,
+    },
+    {
+      label: "Portfolio",
+      path: "/portfolio",
+      enabled: false,
+      icon: <BookOutlinedIcon />,
+    },
+    {
+      label: "Interests",
+      path: "/intersts",
+      enabled: false,
+      icon: <StarBorderOutlinedIcon />,
+    },
+    {
+      label: "Contact",
+      path: "/contact",
+      enabled: true,
+      icon: <MarkEmailUnreadOutlinedIcon />,
+    },
   ];
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -64,25 +89,36 @@ const NavBar = () => {
             <LogoIcon />
 
             {/* MENU Activated */}
-            <Box sx={{ display: { xs: "none", md: "block" } }}>
+            <Stack
+              direction={"row"}
+              justifyItems={"space-evenly"}
+              paddingTop={1}
+              sx={{ display: { xs: "none", md: "block" } }}
+              spacing={2}
+            >
               {menu.map((item) => (
                 <Button
                   key={item.label}
                   sx={{
                     color: (theme) => theme.palette.text.primary,
-                    textDecoration: "none",
                     "&.active": {
-                      textDecoration: "underline", // Style for active route
+                      fontWeight: "700", // Style for active route
+                    },
+                    "&.active .MuiSvgIcon-root": {
+                      stroke: (theme) => theme.palette.text.primary, // match this to the color of your background
+                      strokeWidth: "0.5px", // the higher the value, the thinner the SVG                    },
                     },
                   }}
                   disabled={!item.enabled}
                   component={NavLink}
                   to={item.path}
+                  size="small"
+                  startIcon={item.icon}
                 >
                   {item.label}
                 </Button>
               ))}
-            </Box>
+            </Stack>
 
             {/* SWITCHERS */}
             <Stack
