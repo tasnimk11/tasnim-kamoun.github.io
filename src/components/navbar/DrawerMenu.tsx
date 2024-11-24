@@ -1,17 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Box, Button, Divider, Drawer, Stack, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useMenu } from "../../contexts/MenuContext";
 
@@ -41,8 +28,8 @@ const DrawerMenu = ({ mobileOpen, handleDrawerToggle }: Props) => {
             key={item.label}
             sx={{
               minWidth: "80%",
-              justifyContent: "flex-start", // Aligns the icon and label to the left
-              textAlign: "left", // Ensures text aligns left
+              justifyContent: "flex-start",
+              textAlign: "left",
               color: (theme) => theme.palette.text.primary,
               fontWeight: selectedPage === item.path ? 600 : 400,
               ".MuiSvgIcon-root": {

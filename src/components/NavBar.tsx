@@ -1,15 +1,15 @@
-import { AppBar, Button, IconButton, Stack, Toolbar } from "@mui/material";
+import { AppBar, IconButton, Stack, Toolbar } from "@mui/material";
 import ThemeModeSwitch from "./navbar/ThemeModeSwitch";
 import { LanguageSwitch } from "./navbar/LanguageSwitch";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import DrawerMenu from "./navbar/DrawerMenu";
 import LogoIcon from "./navbar/LogoIcon";
-import { NavLink } from "react-router-dom";
 import { useMenu } from "../contexts/MenuContext";
+import StackMenu from "./navbar/StackMenu";
 
 const NavBar = () => {
-  const { menu, selectedPage, setSelectedPage } = useMenu();
+  const { selectedPage } = useMenu();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -52,37 +52,8 @@ const NavBar = () => {
             <LogoIcon />
 
             {/* MENU Activated */}
-            <Stack
-              direction={"row"}
-              justifyItems={"space-evenly"}
-              paddingTop={1}
-              sx={{ display: { xs: "none", md: "block" } }}
-              spacing={2}
-            >
-              {menu.map((item) => (
-                <Button
-                  key={item.label}
-                  sx={{
-                    color: (theme) => theme.palette.text.primary,
-                    fontWeight: selectedPage === item.path ? 600 : 400,
-                    ".MuiSvgIcon-root": {
-                      stroke: (theme) => theme.palette.text.primary,
-                      strokeWidth: selectedPage === item.path ? "0.3px" : "0px",
-                    },
-                  }}
-                  disabled={!item.enabled}
-                  component={NavLink}
-                  to={item.path}
-                  size="small"
-                  startIcon={item.icon}
-                  onClick={() => setSelectedPage(item.path)}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </Stack>
+            <StackMenu />
 
-            {/* SWITCHERS */}
             <Stack
               direction={"row"}
               spacing={2}
