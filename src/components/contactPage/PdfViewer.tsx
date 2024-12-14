@@ -49,7 +49,7 @@ export const PdfViewer = () => {
   return (
     <Container
       sx={{
-        width: "700px",
+        width: { xs: "100%", sm: "100%", md: "700px" },
         height: "400px",
         overflow: "hidden",
       }}
@@ -67,7 +67,6 @@ export const PdfViewer = () => {
         <Toolbar>
           {(props: ToolbarSlot) => {
             const { Download, ZoomIn, ZoomOut } = props;
-            //TODO : responsiveness
             return (
               <Stack direction={"row"} justifyContent={"space-between"}>
                 <Stack direction={"row"}>

@@ -47,7 +47,7 @@ const MainLayouts = ({ children }: { children: React.ReactNode }) => {
           <NavBar />
           <Stack
             spacing={4}
-            paddingTop={{ md: 10 }}
+            paddingTop={{ md: 5 }}
             sx={{
               justifyContent: "center",
               alignItems: "center",

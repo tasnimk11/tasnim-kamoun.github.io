@@ -17,7 +17,13 @@ const ContactButtons = () => {
   const githubUrl = "https://github.com/tasnimk11";
 
   return (
-    <Stack spacing={2} justifyContent={"center"}>
+    <Stack
+      spacing={2}
+      justifyContent={{ sm: "center", md: "center" }}
+      alignItems={{ sm: "center", md: "unset" }}
+      direction={{ xs: "column", sm: "row", md: "column" }}
+      sx={{ width: "100%" }}
+    >
       <StyledButton
         label={emailButtonLabel}
         link={`mailto:${email}`}
