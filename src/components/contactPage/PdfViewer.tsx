@@ -1,19 +1,43 @@
-import { Box, Container, IconButton, Stack } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Icon,
+  IconButton,
+  Stack,
+  TextField,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
+} from "@mui/material";
 
-import { Worker, Viewer } from "@react-pdf-viewer/core";
+import {
+  Worker,
+  Viewer,
+  Position,
+  MinimalButton,
+} from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useTranslation } from "react-i18next";
 import { toolbarPlugin, ToolbarSlot } from "@react-pdf-viewer/toolbar";
 import { useThemeMode } from "../../contexts/ThemeModeContext";
 import {
+  NextIcon,
+  PreviousIcon,
+  RenderSearchProps,
   RenderShowSearchPopoverProps,
   searchPlugin,
 } from "@react-pdf-viewer/search";
 import SearchIcon from "@mui/icons-material/Search";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import SpellcheckIcon from "@mui/icons-material/Spellcheck";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GetAppIcon from "@mui/icons-material/GetApp";
+import TextFieldsIcon from "@mui/icons-material/TextFields";
 import {
   RenderZoomInProps,
   RenderZoomOutProps,
@@ -31,6 +55,8 @@ export const PdfViewer = () => {
   const { Toolbar } = toolbarPluginInstance;
 
   const searchPluginInstance = searchPlugin();
+  const { Search } = searchPluginInstance;
+
   const zoomPluginInstance = zoomPlugin();
 
   const getFilePluginInstance = getFilePlugin();
@@ -56,24 +82,100 @@ export const PdfViewer = () => {
       >
         <Toolbar>
           {(props: ToolbarSlot) => {
-            const {
-              ShowSearchPopover,
-              EnterFullScreen,
-              Download,
-              ZoomIn,
-              ZoomOut,
-            } = props;
-            //TODO : update Popoever search !
+            const { ShowSearchPopover, Download, ZoomIn, ZoomOut } = props;
             //TODO : responsiveness
             return (
               <Stack direction={"row"} justifyContent={"space-between"}>
-                <ShowSearchPopover>
-                  {(props: RenderShowSearchPopoverProps) => (
-                    <IconButton onClick={props.onClick} size="small">
-                      <SearchIcon />
-                    </IconButton>
-                  )}
-                </ShowSearchPopover>
+                <Stack direction={"row"}>
+                  <Search>
+                    {(renderSearchProps: RenderSearchProps) => {
+                      return (
+                        <ToggleButtonGroup
+                          size="small"
+                          exclusive={false}
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 0.5, // Adjusts spacing between elements
+                          }}
+                        >
+                          <TextField
+                            sx={{
+                              input: {
+                                paddingX: 1,
+                                paddingY: 0.7,
+                                fontSize: 11,
+                              },
+                              width: "100px",
+                            }}
+                            placeholder="Enter to search"
+                            value={renderSearchProps.keyword}
+                            variant="outlined"
+                            onChange={(e) => {
+                              renderSearchProps.setKeyword(e.target.value);
+                            }}
+                            onKeyDown={(e) => {
+                              if (
+                                e.key === "Enter" &&
+                                renderSearchProps.keyword
+                              ) {
+                                renderSearchProps.search();
+                              }
+                            }}
+                            size="small"
+                          />
+
+                          <ToggleButton
+                            value="matchCase"
+                            selected={renderSearchProps.matchCase}
+                            onChange={() =>
+                              renderSearchProps.changeMatchCase(
+                                !renderSearchProps.matchCase
+                              )
+                            }
+                            sx={{ border: "none" }}
+                            title="Match case"
+                          >
+                            <TextFieldsIcon fontSize="small" />
+                          </ToggleButton>
+
+                          <ToggleButton
+                            value="wholeWords"
+                            selected={renderSearchProps.wholeWords}
+                            onChange={() =>
+                              renderSearchProps.changeWholeWords(
+                                !renderSearchProps.wholeWords
+                              )
+                            }
+                            sx={{ border: "none" }}
+                            title="Match whole word"
+                          >
+                            <SpellcheckIcon fontSize="small" />
+                          </ToggleButton>
+
+                          <ToggleButton
+                            value="previousMatch"
+                            onClick={renderSearchProps.jumpToPreviousMatch}
+                            sx={{ border: "none" }}
+                            title="Previous match"
+                          >
+                            <KeyboardArrowUpIcon fontSize="small" />
+                          </ToggleButton>
+
+                          <ToggleButton
+                            value="nextMatch"
+                            onClick={renderSearchProps.jumpToNextMatch}
+                            sx={{ border: "none" }}
+                            title="Next match"
+                          >
+                            <KeyboardArrowDownIcon fontSize="small" />
+                          </ToggleButton>
+                        </ToggleButtonGroup>
+                      );
+                    }}
+                  </Search>
+                </Stack>
+
                 <Stack direction={"row"}>
                   <ZoomOut>
                     {(props: RenderZoomOutProps) => (
@@ -90,6 +192,7 @@ export const PdfViewer = () => {
                     )}
                   </ZoomIn>
                 </Stack>
+
                 <Stack direction={"row"}>
                   <Download>
                     {(props: RenderDownloadProps) => (
@@ -104,7 +207,6 @@ export const PdfViewer = () => {
           }}
         </Toolbar>
       </Box>
-      {/* Use a Worker to optimize PDF rendering */}
       <Box
         sx={{
           height: "calc(100% - 50px)", // Adjust height to fill the container minus toolbar
