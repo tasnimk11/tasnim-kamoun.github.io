@@ -1,8 +1,10 @@
 import { Typography } from "@mui/material";
-import React from "react";
 import { NavLink } from "react-router-dom";
+import { useMenu } from "../../contexts/MenuContext";
 
 const LogoIcon = () => {
+  const { setSelectedPage } = useMenu();
+
   return (
     <Typography
       width={"10%"}
@@ -15,9 +17,9 @@ const LogoIcon = () => {
         WebkitBackgroundClip: "text", // Ensures gradient is clipped to the text
         WebkitTextFillColor: "transparent", // Makes the background visible inside the text
         textFillColor: "transparent", // Ensures compatibility with non-WebKit browsers
-
         textDecoration: "none", // Removes underline from the link
       }}
+      onClick={() => setSelectedPage("/")}
     >
       TK
     </Typography>
