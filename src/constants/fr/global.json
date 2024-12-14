@@ -12,6 +12,9 @@
     "contact": "Contact"
   },
   "contact_page": {
-    "path_to_cv": "CV-tasnim-fr.pdf"
+    "path_to_cv": "CV-tasnim-fr.pdf",
+    "email_button_label": "m'écrire",
+    "linkedin_button_label": "rejoindre mon réseau",
+    "git_button_label": "voir mon git"
   }
 }

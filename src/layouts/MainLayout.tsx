@@ -9,11 +9,23 @@ import NavBar from "../components/NavBar";
 import { useThemeMode } from "../contexts/ThemeModeContext";
 import { MenuProvider } from "../contexts/MenuContext";
 
-const MainLayouts = ({ children }) => {
+const MainLayouts = ({ children }: { children: React.ReactNode }) => {
   const { themeMode } = useThemeMode();
 
+  // theme creator : https://bareynol.github.io/mui-theme-creator/
   const theme = createTheme({
-    palette: { mode: themeMode },
+    palette: {
+      mode: themeMode,
+      primary: {
+        main: themeMode === "dark" ? "#ffffff" : "#000000",
+      },
+      secondary: {
+        main: "#6f403a",
+      },
+      info: {
+        main: "#ba6c62",
+      },
+    },
     typography: {
       fontFamily: "Poppins",
     },

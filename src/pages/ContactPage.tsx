@@ -1,18 +1,15 @@
 import { Stack } from "@mui/material";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import { PdfViewer } from "../components/PdfViewer";
+
+import { PdfViewer } from "../components/contactPage/PdfViewer";
+
+import ContactButtons from "../components/contactPage/ContactButtons";
 
 const ContactPage = () => {
   return (
-    <Stack direction={"row"} spacing={4}>
-      {/* Download Resumé */}
-
+    <Stack direction={"row"} spacing={8} marginTop={"0 !important"}>
+      {/* TODO : Style Resonsivness */}
       <PdfViewer />
-
-      {/* TODO : Email */}
-      {/* TODO : Linkedin */}
-      {/* TODO : Git */}
+      <ContactButtons />
     </Stack>
   );
 };
