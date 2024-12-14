@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";

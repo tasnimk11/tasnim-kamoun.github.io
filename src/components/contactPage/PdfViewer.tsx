@@ -1,36 +1,20 @@
 import {
   Box,
-  Checkbox,
   Container,
-  FormControlLabel,
-  Icon,
   IconButton,
   Stack,
   TextField,
   ToggleButton,
   ToggleButtonGroup,
-  Tooltip,
 } from "@mui/material";
 
-import {
-  Worker,
-  Viewer,
-  Position,
-  MinimalButton,
-} from "@react-pdf-viewer/core";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useTranslation } from "react-i18next";
 import { toolbarPlugin, ToolbarSlot } from "@react-pdf-viewer/toolbar";
 import { useThemeMode } from "../../contexts/ThemeModeContext";
-import {
-  NextIcon,
-  PreviousIcon,
-  RenderSearchProps,
-  RenderShowSearchPopoverProps,
-  searchPlugin,
-} from "@react-pdf-viewer/search";
-import SearchIcon from "@mui/icons-material/Search";
+import { RenderSearchProps, searchPlugin } from "@react-pdf-viewer/search";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import SpellcheckIcon from "@mui/icons-material/Spellcheck";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
