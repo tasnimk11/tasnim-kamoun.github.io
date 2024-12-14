@@ -3,6 +3,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   toggleButtonGroupClasses,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -42,8 +43,16 @@ export const LanguageSwitch = () => {
       onChange={handleChange}
       size="small"
     >
-      <ToggleButton value="en">En</ToggleButton>
-      <ToggleButton value="fr">Fr</ToggleButton>
+      <ToggleButton value="en">
+        <Typography variant="subtitle2" fontSize={"11px"}>
+          En
+        </Typography>
+      </ToggleButton>
+      <ToggleButton value="fr">
+        <Typography variant="subtitle2" fontSize={"11px"}>
+          Fr
+        </Typography>
+      </ToggleButton>
     </StyledToggleButtonGroup>
   );
 };

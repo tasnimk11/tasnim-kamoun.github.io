@@ -82,7 +82,7 @@ export const PdfViewer = () => {
       >
         <Toolbar>
           {(props: ToolbarSlot) => {
-            const { ShowSearchPopover, Download, ZoomIn, ZoomOut } = props;
+            const { Download, ZoomIn, ZoomOut } = props;
             //TODO : responsiveness
             return (
               <Stack direction={"row"} justifyContent={"space-between"}>
@@ -96,7 +96,11 @@ export const PdfViewer = () => {
                           sx={{
                             display: "flex",
                             alignItems: "center",
-                            gap: 0.5, // Adjusts spacing between elements
+
+                            "& .MuiToggleButtonGroup-grouped": {
+                              border: 0,
+                              borderRadius: (theme) => theme.shape.borderRadius,
+                            },
                           }}
                         >
                           <TextField
