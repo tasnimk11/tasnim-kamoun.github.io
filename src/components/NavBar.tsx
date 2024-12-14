@@ -5,19 +5,15 @@ import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import DrawerMenu from "./navbar/DrawerMenu";
 import LogoIcon from "./navbar/LogoIcon";
-import { useMenu } from "../contexts/MenuContext";
 import StackMenu from "./navbar/StackMenu";
 
 const NavBar = () => {
-  const { selectedPage } = useMenu();
-
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  console.log("selected page : ", selectedPage);
   return (
     <>
       <AppBar

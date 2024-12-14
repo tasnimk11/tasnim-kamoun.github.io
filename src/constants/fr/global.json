@@ -10,5 +10,8 @@
     "portfolio": "Portfolio",
     "interests": "Intérêts",
     "contact": "Contact"
+  },
+  "contact_page": {
+    "path_to_cv": "CV-tasnim-fr.pdf"
   }
 }

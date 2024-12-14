@@ -3,7 +3,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MainLayouts from "./layouts/MainLayout";
 import { ThemeModeProvider } from "./contexts/ThemeModeContext";
-import { ContactPage } from "@mui/icons-material";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
