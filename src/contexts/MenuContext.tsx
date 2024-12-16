@@ -42,7 +42,7 @@ export const MenuProvider: React.FC<MenuProviderProps> = ({ children }) => {
     {
       label: t("navbar_menu.career"),
       path: "/career",
-      enabled: false,
+      enabled: true,
       icon: <BusinessCenterOutlinedIcon />,
     },
     {
