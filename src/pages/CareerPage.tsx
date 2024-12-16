@@ -1,31 +1,6 @@
 import { Stack, Typography } from "@mui/material";
-import { motion, useAnimation } from "motion/react";
-import { useEffect, useState } from "react";
+import AnimatedZigzagPath from "../components/AnimatedZigzagPath";
 const CareerPage = () => {
-  const [scrollProgress, setScrollProgress] = useState(0); // Tracks scroll position
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollableHeight =
-        document.documentElement.scrollHeight - window.innerHeight; // scrollable height and viewport height
-
-      const progress = (window.scrollY / scrollableHeight) * 2; // scroll progress (0 to 1)
-
-      setScrollProgress(progress);
-
-      // Update the animation controls based on scroll position
-      controls.start({
-        pathLength: progress, // Line fills as you scroll down
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [controls]);
-
   return (
     <Stack
       padding={3}
@@ -59,50 +34,7 @@ const CareerPage = () => {
       >
         Wanna find out more about my career ? follow the path downwards
       </Typography>
-      <svg width="100%" height="100%" viewBox="0 0 500 1000">
-        <defs>
-          <linearGradient
-            id="gradient-stroke"
-            gradientUnits="userSpaceOnUse"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="0%"
-          >
-            <stop offset="0%" stop-color="#6f403a" />
-            <stop offset="100%" stop-color="#ba6c62" />
-          </linearGradient>
-        </defs>
-        <motion.path
-          d="M 80 0 
-
-             V 200 
-             Q 80 210 90 210  
-             
-             H 420
-             Q 430 210 430 220  
-             
-             V 420
-             Q 430 430 420 430  
-             
-             H 80
-             Q 70 430 70 440  
-             
-             V 660
-             Q 70 670 80 670  
-             
-             H 420
-             Q 430 670 430 680  
-             
-             V 880
-             "
-          stroke="url(#gradient-stroke)"
-          fill="none"
-          strokeWidth="3"
-          //   initial={{ pathLength: 0 }}
-          animate={{ pathLength: scrollProgress }}
-        />
-      </svg>
+      <AnimatedZigzagPath />
       <Typography>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio eum
         non officiis rerum error perspiciatis, ipsa dignissimos alias
